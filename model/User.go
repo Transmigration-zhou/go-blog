@@ -17,7 +17,7 @@ type User struct {
 // CheckUser 查询用户是否存在
 func CheckUser(name string) int {
 	var user User
-	db.Where("name = ?", name).First(&user)
+	db.Select("id").Where("name = ?", name).First(&user)
 	if user.ID != 0 {
 		return errormessage.ERROR_USERNAME_USED // 用户已存在
 	}
