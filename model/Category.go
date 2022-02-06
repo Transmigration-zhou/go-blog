@@ -13,7 +13,7 @@ type Category struct {
 // CheckCategory 查询分类是否存在
 func CheckCategory(name string) int {
 	var cate Category
-	db.Where("name = ?", name).First(&cate)
+	db.Select("id").Where("name = ?", name).First(&cate)
 	if cate.ID != 0 {
 		return errormessage.ERROR_CATENAME_USED // 分类已存在
 	}
